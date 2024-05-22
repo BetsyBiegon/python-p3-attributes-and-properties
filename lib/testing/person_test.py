@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from person import Person
-
 import io
 import sys
 
@@ -40,7 +39,7 @@ class TestPerson:
 
     def test_valid_name(self):
         '''saves name if string between 1 and 25 characters.'''
-        guido = Person("Guido")
+        guido = Person(name="Guido")
         assert(guido.name == "Guido")
 
     def test_valid_name_title_case(self):
@@ -52,11 +51,11 @@ class TestPerson:
         '''prints "Job must be in list of approved jobs." if not in job list.'''
         captured_out = io.StringIO()
         sys.stdout = captured_out
-        Person(job="Benevolent dictator for life")
+        Person(name="Guido", job="Benevolent dictator for life")
         sys.stdout = sys.__stdout__
         assert(captured_out.getvalue() == "Job must be in list of approved jobs.\n")
 
     def test_job_in_list(self):
         '''saves job if in job list.'''
-        guido = Person(job="ITC")
+        guido = Person(name="Guido", job="ITC")
         assert(guido.job == "ITC")
